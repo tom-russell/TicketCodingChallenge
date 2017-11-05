@@ -20,17 +20,20 @@ namespace ViagogoEventFinderTest
         public void TestGetEventWhereNoEventExists()
         {
             World testWorld = new World(10);
-            Assert.AreEqual(null, testWorld.GetEventFromLocation(0, 0));
+            LocationVector location = new LocationVector(0, 0);
+
+            Assert.AreEqual(null, testWorld.GetEventFromLocation(location));
         }
 
         [TestMethod]
         public void TestAddAndRetrieveNewEvent()
         {
             World testWorld = new World(10);
-            Event testEvent = new Event(52, new LocationVector(-6, 8));
+            LocationVector location = new LocationVector(-6, 8);
+            Event testEvent = new Event(52, location);
 
             testWorld.AddEventAtLocation(testEvent);
-            Event returnedEvent = testWorld.GetEventFromLocation(-6, 8);
+            Event returnedEvent = testWorld.GetEventFromLocation(location);
 
             Assert.AreEqual(testEvent, returnedEvent);
         }
@@ -44,11 +47,28 @@ namespace ViagogoEventFinderTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(IndexOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestGettingEventOutOfBounds()
         {
             World testWorld = new World(10);
-            testWorld.GetEventFromLocation(4, -15);
+            LocationVector location = new LocationVector(4, -15);
+
+            testWorld.GetEventFromLocation(location);
+        }
+
+        [TestMethod]
+        public void TestGetAllEvents()
+        {
+            World testWorld = new World(10);
+            Assert.AreEqual(0, testWorld.GetEventList().Count);
+
+            for (int i=0; i < 10; i++)
+            {
+                LocationVector loc = new LocationVector(i, i);
+                testWorld.AddEventAtLocation(new Event(0, loc));
+            }
+
+            Assert.AreEqual(10, testWorld.GetEventList().Count);
         }
     }
 }

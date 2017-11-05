@@ -43,12 +43,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Event.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="EventFinder.cs" />
+    <Compile Include="EventWithDistance.cs" />
+    <Compile Include="InputParser.cs" />
+    <Compile Include="ViagogoEventFinderApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomWorldGenerator.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="LocationVector.cs" />
     <Compile Include="World.cs" />
+    <Compile Include="WorldPrinter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

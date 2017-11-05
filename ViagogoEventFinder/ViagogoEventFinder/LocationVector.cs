@@ -25,5 +25,12 @@ namespace ViagogoEventFinder
             this.x = x;
             this.y = y;
         }
+
+        // Returns the manhattam distance between this location and the input location
+        public int ManhattanDistance(LocationVector otherLocation)
+        {
+            int mhDistance = Math.Abs(x - otherLocation.x) + Math.Abs(y - otherLocation.y);
+            return mhDistance;
+        }
     }
 }
